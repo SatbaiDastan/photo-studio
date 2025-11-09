@@ -1,0 +1,18 @@
+workflows:
+  ios-workflow:
+    name: iOS Workflow
+    max_build_duration: 60
+    environment:
+      vars:
+        FLUTTER_WORKING_DIRECTORY: front
+    scripts:
+      - name: Install dependencies
+        script: |
+          cd $FLUTTER_WORKING_DIRECTORY
+          flutter pub get
+      - name: Build iOS
+        script: |
+          cd $FLUTTER_WORKING_DIRECTORY
+          flutter build ios --release
+    artifacts:
+      - front/build/ios/ipa/*.ipa
